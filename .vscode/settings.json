@@ -1,0 +1,31 @@
+{
+	"[javascript][javascriptreact][typescript][typescriptreact]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"editor.tabSize": 2,
+	"eslint.enable": true,
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.workingDirectories": [
+		"src/*",
+		"eslint-config/*"
+	],
+	"files.eol": "\n",
+	"files.insertFinalNewline": true,
+	"npm.exclude": [
+		"**/src/**",
+		"**/eslint-config/**"
+	],
+	"terminal.integrated.defaultProfile.osx": "zsh",
+}
