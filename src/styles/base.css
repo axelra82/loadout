@@ -82,12 +82,12 @@
 
 	h1,
 	.h1 {
-		@apply font-semibold !text-3xl;
+		@apply font-semibold !text-xl3;
 	}
 
 	h2,
 	.h2 {
-		@apply font-semibold !text-2xl;
+		@apply font-semibold !text-xl2;
 	}
 
 	h3,

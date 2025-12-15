@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
+import suidPlugin from "@suid/vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -10,16 +11,29 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-import { name, version } from "./package.json";
+import {
+	name,
+	repository,
+	version,
+} from "./package.json";
 
 // Set the version and build information.
-process.env.VITE_APP_BUILD = execSync("git rev-parse HEAD").toString().trimEnd();
-process.env.VITE_APP_BUILD_TIME = Date.now();
-process.env.VITE_APP_NAME = name;
-process.env.VITE_APP_VERSION = version;
+const gitCommit = JSON.stringify(execSync("git rev-parse HEAD").toString().trimEnd());
+const buildTime = Date.now();
+const appName = JSON.stringify(name);
+const appVersion = JSON.stringify(version);
+const repo = JSON.stringify(repository.url);
 
 export default defineConfig({
+	define: {
+		"import.meta.env.VITE_APP_BUILD": gitCommit,
+		"import.meta.env.VITE_APP_BUILD_TIME": buildTime,
+		"import.meta.env.VITE_APP_NAME": appName,
+		"import.meta.env.VITE_APP_VERSION": appVersion,
+		"import.meta.env.VITE_APP_REPO": repo,
+	},
 	plugins: [
+		suidPlugin(),
 		solidPlugin(),
 		tailwindcss(),
 		VitePWA({
